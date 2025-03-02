@@ -44,7 +44,7 @@ dependencies = [
 
 [[package]]
 name = "udp-request"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "lombok-macros",
 ]
