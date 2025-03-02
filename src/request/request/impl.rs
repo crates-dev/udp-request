@@ -1,5 +1,15 @@
 use crate::*;
 
+impl Default for UdpRequest {
+    #[inline]
+    fn default() -> Self {
+        Self {
+            config: Arc::new(RwLock::new(Config::default())),
+            response: Arc::new(RwLock::new(UdpResponseBinary::default())),
+        }
+    }
+}
+
 impl UdpRequest {
     #[inline]
     fn send_request(
@@ -70,16 +80,5 @@ impl RequestTrait for UdpRequest {
         let mut socket: UdpSocket = self.get_connection_socket(host, port)?;
         let res: Result<BoxResponseTrait, Error> = self.send_request(&mut socket, data);
         res
-    }
-}
-
-impl Default for UdpRequest {
-    #[inline]
-    fn default() -> Self {
-        Self {
-            config: Arc::new(RwLock::new(Config::default())),
-            response: Arc::new(RwLock::new(UdpResponseBinary::default())),
-            data: Arc::new(RwLock::new(Vec::new())),
-        }
     }
 }
