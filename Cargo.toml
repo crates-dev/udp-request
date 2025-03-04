@@ -1,6 +1,6 @@
 [package]
 name = "udp-request"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 authors = ["ltpp-universe <root@ltpp.vip>"] 
 license = "MIT"

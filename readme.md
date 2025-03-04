@@ -30,6 +30,7 @@ cargo add udp-request
 
 ```rs
 use udp_request::*;
+
 let mut request_builder = RequestBuilder::new()
     .host("127.0.0.1")
     .port(80)
@@ -47,6 +48,7 @@ request_builder
 
 ```rs
 use udp_request::*;
+
 let mut request_builder = RequestBuilder::new()
     .host("127.0.0.1")
     .port(80)
@@ -59,10 +61,6 @@ request_builder
     })
     .unwrap_or_else(|e| println!("Error => {:?}", e));
 ```
-
-## Help
-
-Ensure that CMake is installed on the system
 
 ## License
 
