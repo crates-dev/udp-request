@@ -1,7 +1,6 @@
 use crate::*;
 
 impl Default for UdpRequest {
-    #[inline]
     fn default() -> Self {
         Self {
             config: Arc::new(RwLock::new(Config::default())),
@@ -11,7 +10,6 @@ impl Default for UdpRequest {
 }
 
 impl UdpRequest {
-    #[inline]
     fn send_request(
         &mut self,
         socket: &mut UdpSocket,
@@ -23,7 +21,6 @@ impl UdpRequest {
         self.read_response(socket)
     }
 
-    #[inline]
     fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, Error> {
         let cfg_buffer_size: usize = self
             .get_config()
@@ -42,7 +39,6 @@ impl UdpRequest {
         ));
     }
 
-    #[inline]
     fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, Error> {
         let host_port: String = format!("{}:{}", host.clone(), port);
         let cfg_timeout: u64 = self
@@ -69,7 +65,6 @@ impl UdpRequest {
 impl RequestTrait for UdpRequest {
     type RequestResult = RequestResult;
 
-    #[inline]
     fn send(&mut self, data: &[u8]) -> Self::RequestResult {
         let cfg_timeout: Config = self
             .get_config()
