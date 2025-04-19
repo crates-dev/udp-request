@@ -14,14 +14,14 @@ impl UdpRequest {
         &mut self,
         socket: &mut UdpSocket,
         data: &[u8],
-    ) -> Result<BoxResponseTrait, Error> {
+    ) -> Result<BoxResponseTrait, RequestError> {
         socket
             .send(data)
-            .map_err(|err| Error::SendResponseError(err.to_string()))?;
+            .map_err(|err| RequestError::SendResponseError(err.to_string()))?;
         self.read_response(socket)
     }
 
-    fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, Error> {
+    fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, RequestError> {
         let cfg_buffer_size: usize = self
             .get_config()
             .read()
@@ -39,7 +39,7 @@ impl UdpRequest {
         ));
     }
 
-    fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, Error> {
+    fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, RequestError> {
         let host_port: String = format!("{}:{}", host.clone(), port);
         let cfg_timeout: u64 = self
             .get_config()
@@ -47,17 +47,17 @@ impl UdpRequest {
             .map_or(DEFAULT_TIMEOUT, |data| data.timeout);
         let timeout: Duration = Duration::from_millis(cfg_timeout);
         let socket: UdpSocket =
-            UdpSocket::bind("0.0.0.0:0").map_err(|_| Error::UdpSocketCreateError)?;
+            UdpSocket::bind("0.0.0.0:0").map_err(|_| RequestError::UdpSocketCreateError)?;
         socket
             .connect(host_port)
-            .map_err(|_| Error::UdpSocketConnectError)?;
+            .map_err(|_| RequestError::UdpSocketConnectError)?;
         socket
             .set_read_timeout(Some(timeout))
-            .map_err(|_| Error::SetReadTimeoutError)?;
+            .map_err(|_| RequestError::SetReadTimeoutError)?;
         socket
             .set_write_timeout(Some(timeout))
-            .map_err(|_| Error::SetWriteTimeoutError)?;
-        let socket_result: Result<UdpSocket, Error> = Ok(socket);
+            .map_err(|_| RequestError::SetWriteTimeoutError)?;
+        let socket_result: Result<UdpSocket, RequestError> = Ok(socket);
         socket_result
     }
 }
@@ -73,7 +73,7 @@ impl RequestTrait for UdpRequest {
         let host: String = cfg_timeout.get_host().clone();
         let port: usize = cfg_timeout.get_port().clone();
         let mut socket: UdpSocket = self.get_connection_socket(host, port)?;
-        let res: Result<BoxResponseTrait, Error> = self.send_request(&mut socket, data);
+        let res: Result<BoxResponseTrait, RequestError> = self.send_request(&mut socket, data);
         res
     }
 }
