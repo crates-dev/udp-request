@@ -5,7 +5,7 @@
 [![](https://img.shields.io/crates/v/udp-request.svg)](https://crates.io/crates/udp-request)
 [![](https://img.shields.io/crates/d/udp-request.svg)](https://img.shields.io/crates/d/udp-request.svg)
 [![](https://docs.rs/udp-request/badge.svg)](https://docs.rs/udp-request)
-[![](https://github.com/ltpp-universe/udp-request/workflows/Rust/badge.svg)](https://github.com/ltpp-universe/udp-request/actions?query=workflow:Rust)
+[![](https://github.com/eastspire/udp-request/workflows/Rust/badge.svg)](https://github.com/eastspire/udp-request/actions?query=workflow:Rust)
 [![](https://img.shields.io/crates/l/udp-request.svg)](./LICENSE)
 
 </center>
@@ -72,4 +72,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## Contact
 
-For any inquiries, please reach out to the author at [ltpp-universe <root@ltpp.vip>](mailto:root@ltpp.vip).
+For any inquiries, please reach out to the author at [eastspire <root@ltpp.vip>](mailto:root@ltpp.vip).

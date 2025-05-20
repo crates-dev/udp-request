@@ -1,12 +1,12 @@
 [package]
 name = "udp-request"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2024"
-authors = ["ltpp-universe <root@ltpp.vip>"] 
+authors = ["eastspire <root@ltpp.vip>"] 
 license = "MIT"
 description = """A simple UDP request library for sending and receiving UDP packets, designed to handle network communication in Rust applications."""
 keywords = ["udp", "net", "response", "request", "tool"]
-repository = "https://github.com/ltpp-universe/udp-request.git"
+repository = "https://github.com/eastspire/udp-request.git"
 categories = ["network-programming", "web-programming"]
 exclude = [
     "target",    
@@ -16,7 +16,7 @@ exclude = [
 ]
 
 [dependencies]
-lombok-macros = "1.11.0"
+lombok-macros = "1.11.1"
 
 [profile.dev]
 incremental = false
