@@ -23,7 +23,7 @@ impl UdpRequest {
 
     fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, RequestError> {
         let cfg_buffer_size: usize = self
-            .get_config()
+            .config
             .read()
             .map_or(DEFAULT_BUFFER_SIZE, |data| data.buffer_size);
         let mut tmp_buf: Vec<u8> = vec![0u8; cfg_buffer_size];
@@ -42,7 +42,7 @@ impl UdpRequest {
     fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, RequestError> {
         let host_port: String = format!("{}:{}", host.clone(), port);
         let cfg_timeout: u64 = self
-            .get_config()
+            .config
             .read()
             .map_or(DEFAULT_TIMEOUT, |data| data.timeout);
         let timeout: Duration = Duration::from_millis(cfg_timeout);
@@ -67,11 +67,11 @@ impl RequestTrait for UdpRequest {
 
     fn send(&mut self, data: &[u8]) -> Self::RequestResult {
         let cfg_timeout: Config = self
-            .get_config()
+            .config
             .read()
             .map_or(Config::default(), |data| data.clone());
-        let host: String = cfg_timeout.get_host().clone();
-        let port: usize = cfg_timeout.get_port().clone();
+        let host: String = cfg_timeout.host.clone();
+        let port: usize = cfg_timeout.port.clone();
         let mut socket: UdpSocket = self.get_connection_socket(host, port)?;
         let res: Result<BoxResponseTrait, RequestError> = self.send_request(&mut socket, data);
         res
