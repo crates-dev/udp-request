@@ -1,3 +1,8 @@
+//! udp-request
+//!
+//! A simple UDP request library for sending and receiving UDP packets,
+//! designed to handle network communication in Rust applications.
+
 #[cfg(test)]
 mod cfg;
 pub(crate) mod common;

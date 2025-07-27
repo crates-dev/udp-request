@@ -1,6 +1,12 @@
 use crate::*;
 
+/// Default implementation for Config.
 impl Default for Config {
+    /// Creates a default Config instance.
+    ///
+    /// # Returns
+    ///
+    /// - `Config` - Default configuration with empty host, default port, timeout and buffer size.
     fn default() -> Self {
         Self {
             timeout: DEFAULT_TIMEOUT,

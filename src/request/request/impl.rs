@@ -1,6 +1,12 @@
 use crate::*;
 
+/// Default implementation for UdpRequest.
 impl Default for UdpRequest {
+    /// Creates a default UdpRequest instance.
+    ///
+    /// # Returns
+    ///
+    /// - `UdpRequest` - Default request with default config and empty response.
     fn default() -> Self {
         Self {
             config: Arc::new(RwLock::new(Config::default())),
@@ -10,6 +16,16 @@ impl Default for UdpRequest {
 }
 
 impl UdpRequest {
+    /// Sends UDP request data through socket.
+    ///
+    /// # Arguments
+    ///
+    /// - `&mut UdpSocket` - UDP socket for communication.
+    /// - `&[u8]` - Data to send.
+    ///
+    /// # Returns
+    ///
+    /// - `Result<BoxResponseTrait, RequestError>` - Response or error.
     fn send_request(
         &mut self,
         socket: &mut UdpSocket,
@@ -21,6 +37,15 @@ impl UdpRequest {
         self.read_response(socket)
     }
 
+    /// Reads response from UDP socket.
+    ///
+    /// # Arguments
+    ///
+    /// - `&mut UdpSocket` - UDP socket for communication.
+    ///
+    /// # Returns
+    ///
+    /// - `Result<BoxResponseTrait, RequestError>` - Response or error.
     fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, RequestError> {
         let cfg_buffer_size: usize = self
             .config
@@ -39,6 +64,16 @@ impl UdpRequest {
         ));
     }
 
+    /// Creates and configures UDP socket for connection.
+    ///
+    /// # Arguments
+    ///
+    /// - `String` - Host address.
+    /// - `usize` - Port number.
+    ///
+    /// # Returns
+    ///
+    /// - `Result<UdpSocket, RequestError>` - Configured socket or error.
     fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, RequestError> {
         let host_port: String = format!("{}:{}", host.clone(), port);
         let cfg_timeout: u64 = self
@@ -62,9 +97,19 @@ impl UdpRequest {
     }
 }
 
+/// RequestTrait implementation for UdpRequest.
 impl RequestTrait for UdpRequest {
     type RequestResult = RequestResult;
 
+    /// Sends UDP request with given data.
+    ///
+    /// # Arguments
+    ///
+    /// - `&[u8]` - Data to send.
+    ///
+    /// # Returns
+    ///
+    /// - `RequestResult` - Response or error.
     fn send(&mut self, data: &[u8]) -> Self::RequestResult {
         let cfg_timeout: Config = self
             .config
