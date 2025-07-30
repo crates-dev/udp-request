@@ -1,12 +1,12 @@
 use crate::*;
 
-/// Default implementation for UdpRequest.
+/// Implements the `Default` trait for `UdpRequest`.
 impl Default for UdpRequest {
-    /// Creates a default UdpRequest instance.
+    /// Creates a default `UdpRequest` instance.
     ///
     /// # Returns
     ///
-    /// - `UdpRequest` - Default request with default config and empty response.
+    /// - `Self` - A new `UdpRequest` with default configuration and an empty response.
     fn default() -> Self {
         Self {
             config: Arc::new(RwLock::new(Config::default())),
@@ -15,17 +15,18 @@ impl Default for UdpRequest {
     }
 }
 
+/// Implementation of `UdpRequest`.
 impl UdpRequest {
-    /// Sends UDP request data through socket.
+    /// Sends a UDP request and reads the response.
     ///
     /// # Arguments
     ///
-    /// - `&mut UdpSocket` - UDP socket for communication.
-    /// - `&[u8]` - Data to send.
+    /// - `&mut UdpSocket` - The UDP socket to use for sending and receiving data.
+    /// - `&[u8]` - The data to send in the request.
     ///
     /// # Returns
     ///
-    /// - `Result<BoxResponseTrait, RequestError>` - Response or error.
+    /// - `Result<BoxResponseTrait, RequestError>` - A `Result` containing the response as a boxed trait object or a `RequestError`.
     fn send_request(
         &mut self,
         socket: &mut UdpSocket,
@@ -37,15 +38,15 @@ impl UdpRequest {
         self.read_response(socket)
     }
 
-    /// Reads response from UDP socket.
+    /// Reads the response from the UDP socket.
     ///
     /// # Arguments
     ///
-    /// - `&mut UdpSocket` - UDP socket for communication.
+    /// - `&mut UdpSocket` - The UDP socket to read the response from.
     ///
     /// # Returns
     ///
-    /// - `Result<BoxResponseTrait, RequestError>` - Response or error.
+    /// - `Result<BoxResponseTrait, RequestError>` - A `Result` containing the response as a boxed trait object or a `RequestError`.
     fn read_response(&mut self, socket: &mut UdpSocket) -> Result<BoxResponseTrait, RequestError> {
         let cfg_buffer_size: usize = self
             .config
@@ -64,16 +65,16 @@ impl UdpRequest {
         ));
     }
 
-    /// Creates and configures UDP socket for connection.
+    /// Creates and configures a UDP socket for the connection.
     ///
     /// # Arguments
     ///
-    /// - `String` - Host address.
-    /// - `usize` - Port number.
+    /// - `String` - The host address to connect to.
+    /// - `usize` - The port number to connect to.
     ///
     /// # Returns
     ///
-    /// - `Result<UdpSocket, RequestError>` - Configured socket or error.
+    /// - `Result<UdpSocket, RequestError>` - A `Result` containing the configured `UdpSocket` or a `RequestError`.
     fn get_connection_socket(&self, host: String, port: usize) -> Result<UdpSocket, RequestError> {
         let host_port: String = format!("{}:{}", host.clone(), port);
         let cfg_timeout: u64 = self
@@ -97,19 +98,19 @@ impl UdpRequest {
     }
 }
 
-/// RequestTrait implementation for UdpRequest.
+/// Implements the `RequestTrait` for `UdpRequest`.
 impl RequestTrait for UdpRequest {
     type RequestResult = RequestResult;
 
-    /// Sends UDP request with given data.
+    /// Sends a UDP request with the given data.
     ///
     /// # Arguments
     ///
-    /// - `&[u8]` - Data to send.
+    /// - `&[u8]` - The data to send in the request.
     ///
     /// # Returns
     ///
-    /// - `RequestResult` - Response or error.
+    /// - `Self::RequestResult` - The result of the request, containing either the response or an error.
     fn send(&mut self, data: &[u8]) -> Self::RequestResult {
         let cfg_timeout: Config = self
             .config

@@ -1,11 +1,7 @@
 use crate::*;
 
-/// Result type for UDP requests.
-///
-/// Contains either a boxed response trait object or request error.
+/// A type alias for the result of a UDP request.
 pub type RequestResult = Result<BoxResponseTrait, RequestError>;
 
-/// Boxed trait object for UDP request.
-///
-/// Used to store different request implementations.
+/// A type alias for a boxed `RequestTrait` object.
 pub type BoxRequestTrait = Box<dyn RequestTrait<RequestResult = RequestResult>>;

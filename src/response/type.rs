@@ -1,7 +1,5 @@
 use crate::*;
 
-/// Boxed trait object for UDP responses.
-///
-/// Can contain either text or binary response implementations.
+/// A type alias for a boxed `ResponseTrait` object.
 pub type BoxResponseTrait =
     Box<dyn ResponseTrait<OutputText = UdpResponseText, OutputBinary = UdpResponseBinary>>;

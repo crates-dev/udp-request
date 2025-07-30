@@ -1,22 +1,24 @@
-/// Error types for UDP requests.
+/// An enumeration of possible errors that can occur during a UDP request.
+///
+/// This enum covers a range of potential issues, from socket creation to network timeouts.
 #[derive(Debug)]
 pub enum RequestError {
-    /// Invalid URL format.
+    /// An error indicating that the provided URL is invalid.
     InvalidUrl,
-    /// Failed to create UDP socket.
+    /// An error indicating that the UDP socket could not be created.
     UdpSocketCreateError,
-    /// Failed to connect UDP socket.
+    /// An error indicating that the UDP socket could not connect to the specified address.
     UdpSocketConnectError,
-    /// General request error.
+    /// A general request error, used for unspecified issues.
     RequestError,
-    /// Failed to read from connection.
+    /// An error indicating that reading from the connection failed.
     ReadConnectionError,
-    /// Failed to set read timeout.
+    /// An error indicating that setting the read timeout for the socket failed.
     SetReadTimeoutError,
-    /// Failed to set write timeout.
+    /// An error indicating that setting the write timeout for the socket failed.
     SetWriteTimeoutError,
-    /// Failed to read response.
+    /// An error indicating that reading the response from the socket failed.
     ReadResponseError,
-    /// Failed to send response with error message.
+    /// An error indicating that sending the request failed, with a descriptive message.
     SendResponseError(String),
 }

@@ -1,35 +1,38 @@
 use crate::*;
 
-/// Trait for UDP response operations.
+/// A trait for handling UDP responses.
+///
+/// This trait defines the common operations for processing UDP responses,
+/// including converting them to text or binary formats.
 pub trait ResponseTrait: Send + Debug {
-    /// Associated type for text output.
+    /// The associated type for the text representation of the response.
     type OutputText: Clone + Sized;
-    /// Associated type for binary output.
+    /// The associated type for the binary representation of the response.
     type OutputBinary: Clone + Sized;
 
-    /// Converts response to text format.
+    /// Converts the response to its text format.
     ///
     /// # Returns
     ///
-    /// - `Self::OutputText` - Text representation of response.
+    /// - `Self::OutputText` - The text representation of the response.
     fn text(&self) -> Self::OutputText;
 
-    /// Gets binary representation of response.
+    /// Returns the binary representation of the response.
     ///
     /// # Returns
     ///
-    /// - `Self::OutputBinary` - Binary representation of response.
+    /// - `Self::OutputBinary` - The binary representation of the response.
     fn binary(&self) -> Self::OutputBinary;
 
-    /// Creates response from byte slice.
+    /// Creates a response instance from a byte slice.
     ///
     /// # Arguments
     ///
-    /// - `&[u8]` - Response data.
+    /// - `&[u8]` - The byte slice containing the response data.
     ///
     /// # Returns
     ///
-    /// - `Self` - New response instance.
+    /// - `Self` - A new instance of the response type.
     fn from(response: &[u8]) -> Self
     where
         Self: Sized;

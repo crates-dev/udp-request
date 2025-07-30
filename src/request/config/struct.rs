@@ -1,16 +1,17 @@
 use crate::*;
 
-/// Configuration for UDP request.
+/// Configuration for a UDP request.
 ///
-/// Contains network settings and timeout configurations.
+/// This structure holds all the necessary configuration for making a UDP request,
+/// including network settings and timeout values.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Config {
-    /// Remote host address.
+    /// The remote host address to which the UDP request will be sent.
     pub(crate) host: String,
-    /// Remote port number.
+    /// The remote port number to which the UDP request will be sent.
     pub(crate) port: usize,
-    /// Request timeout in milliseconds.
+    /// The request timeout in milliseconds.
     pub(crate) timeout: u64,
-    /// Buffer size for receiving data.
+    /// The buffer size for receiving data from the remote host.
     pub(crate) buffer_size: usize,
 }

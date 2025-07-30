@@ -1,19 +1,19 @@
 use crate::*;
 
-/// ResponseTrait implementation for binary UDP response.
+/// Implements the `ResponseTrait` for `UdpResponseBinary`.
 impl ResponseTrait for UdpResponseBinary {
     type OutputText = UdpResponseText;
     type OutputBinary = UdpResponseBinary;
 
-    /// Creates UdpResponseBinary from byte slice.
+    /// Creates a `UdpResponseBinary` instance from a byte slice.
     ///
     /// # Arguments
     ///
-    /// - `&[u8]` - Response data.
+    /// - `&[u8]` - The byte slice containing the response data.
     ///
     /// # Returns
     ///
-    /// - `Self` - New binary response instance.
+    /// - `Self` - A new `UdpResponseBinary` instance.
     fn from(response: &[u8]) -> Self
     where
         Self: Sized,
@@ -21,20 +21,20 @@ impl ResponseTrait for UdpResponseBinary {
         response.to_vec()
     }
 
-    /// Gets binary representation of response.
+    /// Returns the binary representation of the response.
     ///
     /// # Returns
     ///
-    /// - `Self::OutputBinary` - Binary response data.
+    /// - `Self::OutputBinary` - The binary data of the response.
     fn binary(&self) -> Self::OutputBinary {
         self.clone()
     }
 
-    /// Converts binary response to text representation.
+    /// Converts the binary response to a text representation.
     ///
     /// # Returns
     ///
-    /// - `UdpResponseText` - Text response data.
+    /// - `UdpResponseText` - The text representation of the response, with invalid UTF-8 sequences replaced.
     fn text(&self) -> UdpResponseText {
         let data: String = String::from_utf8_lossy(&self).to_string();
         data

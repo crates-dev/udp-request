@@ -1,8 +1,19 @@
 use crate::*;
 
+/// Implements the `StdError` trait for `RequestError`.
 impl StdError for RequestError {}
 
+/// Implements the `Display` trait for `RequestError`.
 impl Display for RequestError {
+    /// Formats the `RequestError` for display.
+    ///
+    /// # Arguments
+    ///
+    /// - `&mut fmt::Formatter<'_>` - The formatter to write the output to.
+    ///
+    /// # Returns
+    ///
+    /// - `fmt::Result` - The result of the formatting operation.
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::InvalidUrl => write!(f, "Invalid url"),

@@ -1,4 +1,2 @@
-/// Binary response type for UDP operations.
-///
-/// Represents raw binary data received from UDP requests.
+/// A type alias for a binary UDP response.
 pub type UdpResponseBinary = Vec<u8>;
