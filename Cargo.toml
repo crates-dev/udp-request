@@ -1,12 +1,13 @@
 [package]
 name = "udp-request"
-version = "0.3.1"
+version = "0.3.2"
+readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
 license = "MIT"
 description = """A simple UDP request library for sending and receiving UDP packets, designed to handle network communication in Rust applications."""
 keywords = ["udp", "net", "response", "request", "tool"]
-repository = "https://github.com/eastspire/udp-request.git"
+repository = "https://github.com/crates-dev/udp-request.git"
 categories = ["network-programming", "web-programming"]
 exclude = [
     "target",
