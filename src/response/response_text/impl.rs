@@ -17,6 +17,7 @@ impl ResponseTrait for UdpResponseText {
     /// # Returns
     ///
     /// - `Self::OutputText` - The text representation of the response.
+    #[inline]
     fn from(response: &[u8]) -> Self::OutputText
     where
         Self: Sized,
@@ -29,6 +30,7 @@ impl ResponseTrait for UdpResponseText {
     /// # Returns
     ///
     /// - `Self::OutputText` - The text data of the response.
+    #[inline]
     fn text(&self) -> Self::OutputText {
         self.clone()
     }
@@ -38,6 +40,7 @@ impl ResponseTrait for UdpResponseText {
     /// # Returns
     ///
     /// - `UdpResponseBinary` - The binary representation of the response.
+    #[inline]
     fn binary(&self) -> UdpResponseBinary {
         self.clone().into_bytes()
     }
