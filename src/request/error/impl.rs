@@ -24,7 +24,7 @@ impl Display for RequestError {
             Self::SetReadTimeoutError => write!(f, "Failed to set read timeout"),
             Self::SetWriteTimeoutError => write!(f, "Failed to set write timeout"),
             Self::ReadResponseError => write!(f, "Read response error"),
-            Self::SendResponseError(err) => write!(f, "Send response error: {}", err),
+            Self::SendResponseError(err) => write!(f, "Send response error: {err}"),
         }
     }
 }
