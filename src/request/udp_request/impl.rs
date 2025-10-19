@@ -60,9 +60,9 @@ impl UdpRequest {
         self.response = Arc::new(RwLock::new(<UdpResponseBinary as ResponseTrait>::from(
             &response_bytes,
         )));
-        return Ok(Box::new(
+        Ok(Box::new(
             self.response.read().map_or(Vec::new(), |data| data.clone()),
-        ));
+        ))
     }
 
     /// Creates and configures a UDP socket for the connection.
@@ -117,7 +117,7 @@ impl RequestTrait for UdpRequest {
             .read()
             .map_or(Config::default(), |data| data.clone());
         let host: String = cfg_timeout.host.clone();
-        let port: usize = cfg_timeout.port.clone();
+        let port: usize = cfg_timeout.port;
         let mut socket: UdpSocket = self.get_connection_socket(host, port)?;
         let res: Result<BoxResponseTrait, RequestError> = self.send_request(&mut socket, data);
         res

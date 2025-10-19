@@ -39,7 +39,7 @@ impl ResponseTrait for UdpResponseBinary {
     /// - `UdpResponseText` - The text representation of the response, with invalid UTF-8 sequences replaced.
     #[inline]
     fn text(&self) -> UdpResponseText {
-        let data: String = String::from_utf8_lossy(&self).to_string();
+        let data: String = String::from_utf8_lossy(self).to_string();
         data
     }
 }
