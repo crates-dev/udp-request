@@ -7,6 +7,7 @@ impl Default for Config {
     /// # Returns
     ///
     /// - `Self` - A `Config` instance with default values: an empty host, default web port, maximum timeout, and default buffer size.
+    #[inline(always)]
     fn default() -> Self {
         Self {
             timeout: DEFAULT_TIMEOUT,

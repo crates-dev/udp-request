@@ -7,6 +7,7 @@ impl Default for RequestBuilder {
     /// # Returns
     ///
     /// - `Self` - A new `RequestBuilder` with default values.
+    #[inline(always)]
     fn default() -> Self {
         Self {
             udp_request: UdpRequest::default(),
@@ -22,6 +23,7 @@ impl RequestBuilder {
     /// # Returns
     ///
     /// - `Self` - A new `RequestBuilder` instance.
+    #[inline(always)]
     pub fn new() -> Self {
         Self::default()
     }

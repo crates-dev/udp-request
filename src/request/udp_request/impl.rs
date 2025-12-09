@@ -7,6 +7,7 @@ impl Default for UdpRequest {
     /// # Returns
     ///
     /// - `Self` - A new `UdpRequest` with default configuration and an empty response.
+    #[inline(always)]
     fn default() -> Self {
         Self {
             config: Arc::new(RwLock::new(Config::default())),
