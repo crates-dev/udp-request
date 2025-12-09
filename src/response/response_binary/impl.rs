@@ -14,7 +14,7 @@ impl ResponseTrait for UdpResponseBinary {
     /// # Returns
     ///
     /// - `Self` - A new `UdpResponseBinary` instance.
-    #[inline]
+    #[inline(always)]
     fn from(response: &[u8]) -> Self
     where
         Self: Sized,
@@ -27,7 +27,7 @@ impl ResponseTrait for UdpResponseBinary {
     /// # Returns
     ///
     /// - `Self::OutputBinary` - The binary data of the response.
-    #[inline]
+    #[inline(always)]
     fn binary(&self) -> Self::OutputBinary {
         self.clone()
     }
@@ -37,7 +37,7 @@ impl ResponseTrait for UdpResponseBinary {
     /// # Returns
     ///
     /// - `UdpResponseText` - The text representation of the response, with invalid UTF-8 sequences replaced.
-    #[inline]
+    #[inline(always)]
     fn text(&self) -> UdpResponseText {
         let data: String = String::from_utf8_lossy(self).to_string();
         data
