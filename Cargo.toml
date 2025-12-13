@@ -1,6 +1,6 @@
 [package]
 name = "udp-request"
-version = "0.3.8"
+version = "0.3.9"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
@@ -9,12 +9,7 @@ description = """A simple UDP request library for sending and receiving UDP pack
 keywords = ["udp", "net", "response", "request", "tool"]
 repository = "https://github.com/crates-dev/udp-request.git"
 categories = ["network-programming", "web-programming"]
-exclude = [
-    "target",
-    "Cargo.lock",
-    "sh",
-    ".github"
-]
+exclude = ["target", "Cargo.lock", "sh", ".github"]
 
 [profile.dev]
 incremental = false
