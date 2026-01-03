@@ -24,44 +24,6 @@ To use this crate, you can run cmd:
 cargo add udp-request
 ```
 
-## Use
-
-#### Receive Text
-
-```rust
-use udp_request::*;
-
-let mut request_builder = RequestBuilder::new()
-    .host("127.0.0.1")
-    .port(80)
-    .build();
-request_builder
-    .send("udp send".as_bytes())
-    .and_then(|response| {
-        println!("ResponseTrait => {:?}", response.text());
-        Ok(())
-    })
-    .unwrap_or_else(|e| println!("Error => {:?}", e));
-```
-
-#### Receive Binary
-
-```rust
-use udp_request::*;
-
-let mut request_builder = RequestBuilder::new()
-    .host("127.0.0.1")
-    .port(80)
-    .build();
-request_builder
-    .send("udp send".as_bytes())
-    .and_then(|response| {
-        println!("ResponseTrait => {:?}", response.binary());
-        Ok(())
-    })
-    .unwrap_or_else(|e| println!("Error => {:?}", e));
-```
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
