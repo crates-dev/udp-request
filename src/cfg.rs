@@ -12,7 +12,6 @@ fn test_readme_text() {
         .send("udp send".as_bytes())
         .map(|response| {
             println!("ResponseTrait => {:?}", response.text());
-            
         })
         .unwrap_or_else(|e| println!("Error => {e:?}"));
     let mut request_builder = RequestBuilder::new().host("127.0.0.1").port(60000).build();
@@ -20,7 +19,6 @@ fn test_readme_text() {
         .send("udp send".as_bytes())
         .map(|response| {
             println!("ResponseTrait => {:?}", response.text());
-            
         })
         .unwrap_or_else(|e| println!("Error => {e:?}"));
 }
@@ -32,7 +30,6 @@ fn test_readme_binary() {
         .send("udp send".as_bytes())
         .map(|response| {
             println!("ResponseTrait => {:?}", response.binary());
-            
         })
         .unwrap_or_else(|e| println!("Error => {e:?}"));
 }
