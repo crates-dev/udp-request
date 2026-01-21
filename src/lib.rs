@@ -3,22 +3,26 @@
 //! A simple UDP request library for sending and receiving UDP packets,
 //! designed to handle network communication in Rust applications.
 
-#[cfg(test)]
-mod cfg;
-pub(crate) mod common;
-pub(crate) mod request;
-pub(crate) mod response;
+mod common;
+mod request;
+mod response;
 
-pub use request::*;
-pub use response::*;
+pub use {request::*, response::*};
 
-pub(crate) use common::*;
+use common::*;
 
-pub(crate) use std::{
+use std::{
     error::Error as StdError,
     fmt::Debug,
     fmt::{self, Display},
     net::UdpSocket,
     sync::{Arc, RwLock},
     time::Duration,
+};
+
+#[cfg(test)]
+use std::{
+    sync::Mutex,
+    thread::{JoinHandle, spawn},
+    time::Instant,
 };
