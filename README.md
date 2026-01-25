@@ -12,7 +12,7 @@
 
 [Official Documentation](https://docs.ltpp.vip/udp-request/)
 
-[Api Docs](https://docs.rs/udp-request/latest/udp_request/)
+[Api Docs](https://docs.rs/udp-request/latest/)
 
 > A simple UDP request library for sending and receiving UDP packets, designed to handle network communication in Rust applications.
 
