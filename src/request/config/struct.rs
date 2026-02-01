@@ -4,7 +4,7 @@ use crate::*;
 ///
 /// This structure holds all the necessary configuration for making a UDP request,
 /// including network settings and timeout values.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Config {
     /// The remote host address to which the UDP request will be sent.
     pub(crate) host: String,

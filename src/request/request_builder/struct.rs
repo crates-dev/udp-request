@@ -3,7 +3,7 @@ use crate::*;
 /// A builder for creating and configuring a `UdpRequest`.
 ///
 /// This struct provides a fluent interface for building a `UdpRequest`.
-#[derive(Debug, Clone)]
+#[derive(Clone, Debug)]
 pub struct RequestBuilder {
     /// The `UdpRequest` instance being built.
     pub(crate) udp_request: UdpRequest,
