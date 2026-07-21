@@ -1,4 +1,4 @@
-use crate::*;
+use super::*;
 
 /// A trait for handling UDP responses.
 ///

@@ -1,4 +1,4 @@
-use crate::*;
+use super::*;
 
 /// Implements the `ResponseTrait` for `UdpResponseText`.
 impl ResponseTrait for UdpResponseText {

@@ -1,4 +1,4 @@
-use crate::*;
+use super::*;
 
 /// A type alias for the result of a UDP request.
 pub type RequestResult = Result<BoxResponseTrait, RequestError>;

@@ -1,4 +1,4 @@
-use crate::*;
+use super::*;
 
 /// Implements the `Default` trait for `UdpRequest`.
 impl Default for UdpRequest {
@@ -81,7 +81,9 @@ impl UdpRequest {
         let cfg_timeout: u64 = self
             .config
             .read()
-            .map_or(DEFAULT_TIMEOUT, |data| data.timeout);
+            .map_or(DEFAULT_TIMEOUT, |data: RwLockReadGuard<'_, Config>| {
+                data.timeout
+            });
         let timeout: Duration = Duration::from_millis(cfg_timeout);
         let socket: UdpSocket =
             UdpSocket::bind("0.0.0.0:0").map_err(|_| RequestError::UdpSocketCreateError)?;

@@ -1,4 +1,4 @@
-use crate::*;
+use super::*;
 
 /// Implements the `ResponseTrait` for `UdpResponseBinary`.
 impl ResponseTrait for UdpResponseBinary {
