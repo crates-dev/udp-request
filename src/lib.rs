@@ -16,6 +16,6 @@ use std::{
     fmt::Debug,
     fmt::{self, Display},
     net::UdpSocket,
-    sync::{Arc, RwLock, RwLockReadGuard},
+    sync::{Arc, PoisonError, RwLock, RwLockReadGuard, RwLockWriteGuard},
     time::Duration,
 };
